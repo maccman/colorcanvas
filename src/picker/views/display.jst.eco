@@ -1,0 +1,37 @@
+<div class="controls">
+  <form>
+    <label>
+      <span>R</span>
+      <input type="number" min="0" max="255" name="r" required autofocus>
+    </label>
+
+    <label>
+      <span>G</span>
+      <input type="number" min="0" max="255" name="g" required>
+    </label>
+
+    <label>
+      <span>B</span>
+      <input type="number" min="0" max="255" name="b" required>
+    </label>
+
+    <label>
+      <span>A</span>
+      <input type="number" min="0" max="100" step="1" name="a">%
+    </label>
+
+    <label>
+      <span>Hex</span>
+      <input type="text" name="hex">
+    </label>
+
+    <div class="preview">
+      <div class="inner">
+        &nbsp;
+      </div>
+      <div class="original">
+        &nbsp;
+      </div>
+    </div>
+  </form>
+</div>
