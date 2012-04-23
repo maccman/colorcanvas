@@ -15,6 +15,7 @@ class @ColorCanvas.Canvas extends Spine.Controller
       width:  @width,
       height: @height
     )
+    @el.css(width: @width, height: @height)
     @ctx = @el[0].getContext('2d')
 
   val: (x, y) ->

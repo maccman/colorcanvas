@@ -6,7 +6,7 @@ Alpha    = @ColorCanvas.Alpha
 Display  = @ColorCanvas.Display
 
 class @ColorCanvas.Picker extends Spine.Controller
-  className: 'colorPicker'
+  className: 'colorCanvas'
   width: 425
 
   events:

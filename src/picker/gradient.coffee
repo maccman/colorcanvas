@@ -4,7 +4,7 @@ Canvas = @ColorCanvas.Canvas
 class @ColorCanvas.Gradient extends @ColorCanvas.Canvas
   className: 'gradient'
   width: 250
-  height: 250
+  height: 190
 
   constructor: ->
     super

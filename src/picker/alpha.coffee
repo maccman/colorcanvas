@@ -4,7 +4,7 @@ Canvas = @ColorCanvas.Canvas
 class @ColorCanvas.Alpha extends Canvas
   className: 'alpha'
   width: 25
-  height: 250
+  height: 190
 
   constructor: ->
     super
