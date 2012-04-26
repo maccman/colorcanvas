@@ -17,7 +17,6 @@
 
     .colorCanvas {
       -webkit-user-select: none;
-      overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: horizontal;
       -webkit-box-align: stretch;
@@ -57,6 +56,32 @@
     .colorCanvas .gradient,
     .colorCanvas .alpha {
       cursor: pointer;
+      position: relative;
+      overflow: visible;
+    }
+
+    .colorCanvas .position {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .colorCanvas .gradient .position {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      margin: -4px 0 0 -4px;
+    }
+
+    .colorCanvas .spectrum .position,
+    .colorCanvas .alpha .position {
+      height: 2px;
+      background: #000;
+      width: 10px;
+      margin-top: -1px;
     }
 
     .colorCanvas .preview {

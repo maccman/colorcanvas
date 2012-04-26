@@ -1,13 +1,16 @@
-Color  = @ColorCanvas.Color
-Canvas = @ColorCanvas.Canvas
+Color = ColorCanvas.Color
 
-class @ColorCanvas.Gradient extends @ColorCanvas.Canvas
+class ColorCanvas.Gradient extends ColorCanvas.Canvas
   className: 'gradient'
   width: 250
   height: 190
 
   constructor: ->
     super
+
+    @position = new ColorCanvas.Position
+    @append(@position)
+
     @color or= new Color.Black
     @setColor(@color)
 
@@ -49,3 +52,18 @@ class @ColorCanvas.Gradient extends @ColorCanvas.Canvas
     gradient.addColorStop(1, new Color(0, 0, 0, 1).toString())
     @ctx.fillStyle = gradient
     @ctx.fillRect(0, 0, @width, @height)
+
+    @position.move(@getCoords())
+
+  getCoords: (color = @color) ->
+    hsv = color.toHSV()
+
+    # Invert y, then find percentage
+    # of x/y in width/height
+    result =
+      left: Math.round(@width * hsv.s)
+      top:  Math.round(@height * (1 - hsv.v))
+
+  change: (@color) ->
+    @position.move(@getCoords())
+    super

@@ -50,6 +50,36 @@ class @ColorCanvas.Color
     a = '#' + '000000'.substr(0, 6 - a.length) + a
     a.toUpperCase()
 
+  toHSV: ->
+    r = @r / 255
+    g = @g / 255
+    b = @b / 255
+
+    max = Math.max(r, g, b)
+    min = Math.min(r, g, b)
+
+    v = max
+    d = max - min
+
+    s = (if max is 0 then 0 else d / max)
+
+    if max is min
+      h = 0 # achromatic
+    else
+      switch max
+        when r
+          h = (g - b) / d + (if g < b then 6 else 0)
+        when g
+          h = (b - r) / d + 2
+        when b
+          h = (r - g) / d + 4
+      h /= 6
+
+    result =
+      h: h
+      s: s
+      v: v
+
   isTransparent: ->
     not @a
 
@@ -75,10 +105,10 @@ class @ColorCanvas.Color
 
   toString: ->
     if @r? and @g? and @b?
-      if @a?
+      if @a? and @a isnt 1
         "rgba(#{@r}, #{@g}, #{@b}, #{@a})"
       else
-        "rgb(#{@r}, #{@g}, #{@b})"
+        @toHex()
 
     else
       'transparent'

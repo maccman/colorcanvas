@@ -1,13 +1,17 @@
 Color  = @ColorCanvas.Color
 Canvas = @ColorCanvas.Canvas
 
-class @ColorCanvas.Spectrum extends Canvas
+class ColorCanvas.Spectrum extends Canvas
   className: 'spectrum'
   width: 25
   height: 190
 
   constructor: ->
     super
+
+    @position = new ColorCanvas.Position
+    @append(@position)
+
     @color or= new Color(0, 0, 0)
     @setColor(@color)
 
@@ -26,5 +30,17 @@ class @ColorCanvas.Spectrum extends Canvas
     @ctx.fillStyle = gradient
     @ctx.fillRect(0, 0, @width, @height)
 
+    @position.move(@getCoords())
+
   setColor: (@color) ->
     @render()
+
+  getCoords: (color = @color) ->
+    hsv = color.toHSV()
+    result =
+      left: 0
+      top:  Math.round(@height * (1 - hsv.h))
+
+  change: (@color) ->
+    @position.move(@getCoords())
+    super

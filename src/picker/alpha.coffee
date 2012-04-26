@@ -1,14 +1,15 @@
-Color  = @ColorCanvas.Color
-Canvas = @ColorCanvas.Canvas
-
-class @ColorCanvas.Alpha extends Canvas
+class ColorCanvas.Alpha extends ColorCanvas.Canvas
   className: 'alpha'
   width: 25
   height: 190
 
   constructor: ->
     super
-    @color or= new Color(0, 0, 0)
+
+    @position = new ColorCanvas.Position
+    @append(@position)
+
+    @color or= new ColorCanvas.Color(0, 0, 0)
     @setColor(@color)
 
   render: ->
@@ -16,10 +17,12 @@ class @ColorCanvas.Alpha extends Canvas
 
     gradient = @ctx.createLinearGradient(0, 0, 0, @height)
     gradient.addColorStop(0, @color.clone().set(a: 0).toString())
-    gradient.addColorStop(0.9, @color.clone().set(a: 1).toString())
+    gradient.addColorStop(1, @color.clone().set(a: 1).toString())
 
     @ctx.fillStyle = gradient
     @ctx.fillRect(0, 0, @width, @height)
+
+    @position.move(@getCoords())
 
   setColor: (@color) ->
     @render()
@@ -27,3 +30,12 @@ class @ColorCanvas.Alpha extends Canvas
   val: (x, y) ->
      data = @ctx.getImageData(x, y, 1, 1).data
      @color.set(a: Math.round((data[3] / 255) * 100) / 100)
+
+  getCoords: (color = @color) ->
+    result =
+      left: 0
+      top:  Math.round(color.a * @height)
+
+  change: (@color) ->
+    @position.move(@getCoords())
+    super

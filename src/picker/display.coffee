@@ -14,7 +14,7 @@ class @ColorCanvas.Display extends Spine.Controller
     '.preview .original': '$original'
 
   events:
-    'change input:not([name=hex])': 'change'
+    'change input:not([name=hex])': 'changeInput'
     'change input[name=hex]': 'changeHex'
 
   constructor: ->
@@ -38,7 +38,7 @@ class @ColorCanvas.Display extends Spine.Controller
     @$hex.val @color.toHex()
     @$preview.css(background: @color.toString())
 
-  change: (e) ->
+  changeInput: (e) ->
     e.preventDefault()
 
     color = new Color(

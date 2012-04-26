@@ -9,11 +9,6 @@ class @ColorCanvas.Picker extends Spine.Controller
   className: 'colorCanvas'
   width: 425
 
-  events:
-    'click .save': 'save'
-    'click .cancel': 'cancel'
-    'form submit': 'save'
-
   constructor: ->
     super
     @color or= new Color(255, 0, 0)
@@ -34,6 +29,7 @@ class @ColorCanvas.Picker extends Spine.Controller
       @color.set(color.rgb())
       @display.setColor(@color)
       @alpha.setColor(@color)
+
       @change()
 
     @spectrum.bind 'change', (color) =>
@@ -41,6 +37,7 @@ class @ColorCanvas.Picker extends Spine.Controller
       @gradient.setColor(@color)
       @display.setColor(@color)
       @alpha.setColor(@color)
+
       @change()
 
     @alpha.bind 'change', (color) =>
@@ -58,24 +55,15 @@ class @ColorCanvas.Picker extends Spine.Controller
     @gradient.setColor(@color)
     @spectrum.setColor(@color)
     @alpha.setColor(@color)
+
     @change()
 
   change: (color = @color) ->
     @trigger 'change', color
 
-  save: (e) ->
-    e.preventDefault()
-    @close()
-    @trigger 'save', @color
-
-  cancel: (e) ->
-    e.preventDefault()
-    @close()
-    @trigger 'cancel'
-    @trigger 'change', @original
-
   release: ->
     super
+
     @gradient.release()
     @spectrum.release()
     @display.release()

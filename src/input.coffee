@@ -45,7 +45,6 @@ class Popup extends Spine.Controller
     !!@el.parent().length
 
   listen: (e) =>
-    e.preventDefault()
     e.stopPropagation()
 
     return if e.target isnt e.currentTarget
@@ -88,11 +87,11 @@ class Input extends Spine.Controller
   constructor: ->
     super
     @input or= $('<input />')
-    @color or= new Color.Black
+    @color or= new Color(255, 0, 0)
     @render()
 
   render: ->
-    @el.css(backgroundColor: @color.toString())
+    @el.css(background: @color.toString())
 
   replace: (input) ->
     @input = $(input)
