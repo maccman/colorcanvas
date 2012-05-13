@@ -7,7 +7,7 @@ environment.append_path(root.join('src'))
 
 task :build do
   File.open('lib/colorcanvas.js', 'w+') do |f|
-    f.write environment['colorcanvas'].to_s
+    f.write environment['index'].to_s
   end
 
   File.open('lib/colorcanvas.input.js', 'w+') do |f|
