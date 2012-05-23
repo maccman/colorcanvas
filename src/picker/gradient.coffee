@@ -56,13 +56,13 @@ class ColorCanvas.Gradient extends ColorCanvas.Canvas
     @position.move(@getCoords())
 
   getCoords: (color = @color) ->
-    hsv = color.toHSV()
+    [h, s, v] = color.toHSV()
 
     # Invert y, then find percentage
     # of x/y in width/height
     result =
-      left: Math.round(@width * hsv.s)
-      top:  Math.round(@height * (1 - hsv.v))
+      left: Math.round(@width * s)
+      top:  Math.round(@height * (1 - v))
 
   change: (@color) ->
     @position.move(@getCoords())

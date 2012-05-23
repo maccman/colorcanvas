@@ -36,10 +36,10 @@ class ColorCanvas.Spectrum extends Canvas
     @render()
 
   getCoords: (color = @color) ->
-    hsv = color.toHSV()
+    [h, s, v] = color.toHSV()
     result =
       left: 0
-      top:  Math.round(@height * (1 - hsv.h))
+      top:  Math.round(@height * (1 - h))
 
   change: (@color) ->
     @position.move(@getCoords())

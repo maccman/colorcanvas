@@ -26,14 +26,14 @@ class @ColorCanvas.Picker extends Spine.Controller
     @display  = new Display(color: @color, original: @original)
 
     @gradient.bind 'change', (color) =>
-      @color.set(color.rgb())
+      @color.set(color.toRGB()...)
       @display.setColor(@color)
       @alpha.setColor(@color)
 
       @change()
 
     @spectrum.bind 'change', (color) =>
-      @color.set(color.rgb())
+      @color.set(color.toRGB()...)
       @gradient.setColor(@color)
       @display.setColor(@color)
       @alpha.setColor(@color)
