@@ -1,5 +1,8 @@
-Color = @ColorCanvas.Color
-Spine = @ColorCanvas.Spine
+#= require ./views/display
+
+Color    = @ColorCanvas.Color
+Spine    = @ColorCanvas.Spine
+template = @ColorCanvas['picker/views/display']
 
 class @ColorCanvas.Display extends Spine.Controller
   tag: 'article'
@@ -24,7 +27,7 @@ class @ColorCanvas.Display extends Spine.Controller
     @setColor(@color)
 
   render: ->
-    @html JST['picker/views/display'](this)
+    @html template(this)
 
     if @original
       @$original.css(background: @original.toString())

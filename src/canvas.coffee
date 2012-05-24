@@ -1,7 +1,7 @@
 Color  = ColorCanvas.Color
 Spine  = ColorCanvas.Spine
 
-class ColorCanvas.Canvas extends Spine.Controller
+class @ColorCanvas.Canvas extends Spine.Controller
   width: 100
   height: 100
 
