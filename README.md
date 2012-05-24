@@ -17,7 +17,7 @@ Any color inputs will now automatically be shimmed.
 
     <input type="color" value="#FF0000">
 
-You may also want to include the default styles, located in `index.html`.
+You may also want to include the default styles, located in `site/styles.css`.
 
 ## Building
 
