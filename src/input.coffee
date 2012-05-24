@@ -33,8 +33,7 @@ class Popup extends Spine.Controller
     @el.css(left: left, top: top)
     $('body').append(@el)
 
-    setTimeout =>
-      $('body').mousedown(@close)
+    $('body').mousedown(@close)
 
   close: =>
     $('body').unbind('mousedown', @close)
@@ -77,6 +76,25 @@ class PickerPopup extends Popup
     @picker = new Picker(color: @color)
     @picker.bind 'change', => @trigger('change', arguments...)
     @append(@picker)
+
+  open: ->
+    $(document).keydown(@keydown)
+    super
+
+  close: ->
+    $(document).unbind('keydown', @keydown)
+    super
+
+  cancel: ->
+    @trigger('change', @picker.original)
+    @close()
+
+  keydown: (e) =>
+    switch e.which
+      when 27 # esc
+        @cancel()
+      when 13 # enter
+        @close()
 
 class Input extends Spine.Controller
   className: 'colorCanvasInput'
