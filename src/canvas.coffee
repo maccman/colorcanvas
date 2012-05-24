@@ -21,7 +21,7 @@ class ColorCanvas.Canvas extends Spine.Controller
 
   val: (x, y) ->
      data = @ctx.getImageData(x, y, 1, 1).data
-     new Color(data[0], data[1], data[2])
+     new Color(r: data[0], g: data[1], b: data[2])
 
   drag: (e) ->
     @canvas.mousemove(@over)

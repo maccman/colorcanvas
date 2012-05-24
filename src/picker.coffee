@@ -11,7 +11,7 @@ class @ColorCanvas.Picker extends Spine.Controller
 
   constructor: ->
     super
-    @color or= new Color(255, 0, 0)
+    @color or= new Color(r: 255, g: 0, b: 0)
     unless @color instanceof Color
       @color = Color.fromString(@color)
     @original = @color.clone()
@@ -26,14 +26,14 @@ class @ColorCanvas.Picker extends Spine.Controller
     @display  = new Display(color: @color, original: @original)
 
     @gradient.bind 'change', (color) =>
-      @color.set(color.toRGB()...)
+      @color.set(color.toRGB())
       @display.setColor(@color)
       @alpha.setColor(@color)
 
       @change()
 
     @spectrum.bind 'change', (color) =>
-      @color.set(color.toRGB()...)
+      @color.set(color.toRGB())
       @gradient.setColor(@color)
       @display.setColor(@color)
       @alpha.setColor(@color)

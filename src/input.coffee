@@ -87,7 +87,7 @@ class Input extends Spine.Controller
   constructor: ->
     super
     @input or= $('<input />')
-    @color or= new Color(255, 0, 0)
+    @color or= new Color(r: 255, g: 0, b: 0)
     @render()
 
   render: ->

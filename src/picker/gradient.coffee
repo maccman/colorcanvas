@@ -17,11 +17,6 @@ class ColorCanvas.Gradient extends ColorCanvas.Canvas
   setColor: (@color) ->
     @render()
 
-  colorWithAlpha: (a) ->
-    color = @color.clone()
-    color.a = a
-    color
-
   renderGradient: (xy, colors...) ->
     gradient = @ctx.createLinearGradient(0, 0, xy...)
     gradient.addColorStop(0, colors.shift()?.toString())
@@ -37,32 +32,34 @@ class ColorCanvas.Gradient extends ColorCanvas.Canvas
 
     @renderGradient(
       [@width, 0],
-      new Color(255, 255, 255),
-      new Color(255, 255, 255)
+      new Color.White,
+      new Color.White
     )
+
+    pure = @color.toPure()
 
     @renderGradient(
       [@width, 0],
-      @colorWithAlpha(0),
-      @colorWithAlpha(1)
+      pure.clone().set(a: 0),
+      pure.clone().set(a: 1)
     )
 
     gradient = @ctx.createLinearGradient(0, 0, -6, @height)
-    gradient.addColorStop(0, new Color(0, 0, 0, 0).toString())
-    gradient.addColorStop(1, new Color(0, 0, 0, 1).toString())
+    gradient.addColorStop(0, new Color.Black(0).toString())
+    gradient.addColorStop(1, new Color.Black(1).toString())
     @ctx.fillStyle = gradient
     @ctx.fillRect(0, 0, @width, @height)
 
     @position.move(@getCoords())
 
   getCoords: (color = @color) ->
-    [h, s, v] = color.toHSV()
+    hsv = color.toHSV()
 
     # Invert y, then find percentage
     # of x/y in width/height
     result =
-      left: Math.round(@width * s)
-      top:  Math.round(@height * (1 - v))
+      left: Math.round(@width * hsv.s)
+      top:  Math.round(@height * (1 - hsv.v))
 
   change: (@color) ->
     @position.move(@getCoords())

@@ -19,7 +19,7 @@ class @ColorCanvas.Display extends Spine.Controller
 
   constructor: ->
     super
-    @color or= new Color(0, 0, 0)
+    @color or= new Color
     @render()
     @setColor(@color)
 
@@ -42,10 +42,10 @@ class @ColorCanvas.Display extends Spine.Controller
     e.preventDefault()
 
     color = new Color(
-      @$r.val(),
-      @$g.val(),
-      @$b.val(),
-      parseFloat(@$a.val()) / 100
+      r: @$r.val(),
+      g: @$g.val(),
+      b: @$b.val(),
+      a: parseFloat(@$a.val()) / 100
     )
 
     @trigger 'change', color
@@ -53,5 +53,5 @@ class @ColorCanvas.Display extends Spine.Controller
   changeHex: (e) ->
     e.preventDefault()
 
-    color = Color.fromHex(@$hex.val())
+    color = Color.fromString(@$hex.val())
     @trigger 'change', color
