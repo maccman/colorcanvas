@@ -7,7 +7,9 @@ Display  = ColorCanvas.Display
 
 class ColorCanvas.Picker extends Spine.Controller
   className: 'colorCanvas'
-  width: 425
+
+  events:
+    'click [data-type=cancel]': 'cancel'
 
   constructor: ->
     super
@@ -60,6 +62,12 @@ class ColorCanvas.Picker extends Spine.Controller
       @change()
 
     @append(@gradient, @spectrum, @alpha, @display)
+
+  # Private
+
+  cancel: (e) ->
+    e.preventDefault()
+    @change(@original)
 
   change: (color = @color) ->
     @trigger 'change', color

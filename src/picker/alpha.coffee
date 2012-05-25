@@ -1,7 +1,7 @@
 class ColorCanvas.Alpha extends ColorCanvas.Canvas
   className: 'alpha'
   width: 25
-  height: 190
+  height: 215
 
   constructor: ->
     super

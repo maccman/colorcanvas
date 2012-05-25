@@ -14,11 +14,12 @@ $ -> $.colorcanvas.replaceInputs()
 class Popup extends Spine.Controller
   width: 400
 
-  events:
+  popupEvents:
     mousedown: 'listen'
 
   constructor: ->
     super
+    @delegateEvents(@popupEvents)
     @el.delegate 'click', '.close', @close
     @el.addClass('popup')
     @el.css(position: 'absolute')
@@ -70,6 +71,10 @@ class Popup extends Spine.Controller
     $(document).unbind('mouseup', @drop)
 
 class PickerPopup extends Popup
+  events:
+    'submit form': 'close'
+    'click [data-type=cancel]': 'close'
+
   constructor: ->
     super
     @color or= new Color
@@ -86,15 +91,13 @@ class PickerPopup extends Popup
     super
 
   cancel: ->
-    @trigger('change', @picker.original)
+    @trigger 'change', @picker.original
     @close()
 
   keydown: (e) =>
     switch e.which
       when 27 # esc
         @cancel()
-      when 13 # enter
-        @close()
 
 class Input extends Spine.Controller
   className: 'colorCanvasInput'

@@ -19,6 +19,7 @@ class ColorCanvas.Display extends Spine.Controller
   events:
     'change input:not([name=hex])': 'changeInput'
     'keyup input[name=hex]': 'changeHex'
+    'submit form': 'changeInput'
 
   constructor: ->
     super

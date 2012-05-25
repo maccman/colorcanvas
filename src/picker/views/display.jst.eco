@@ -33,5 +33,10 @@
         &nbsp;
       </div>
     </div>
+
+    <footer>
+      <button data-type="cancel">Cancel</button>
+      <button data-type="save" class="right">Save</button>
+    </footer>
   </form>
 </div>

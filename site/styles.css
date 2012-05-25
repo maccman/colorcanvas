@@ -92,6 +92,14 @@
   height: 5px;
 }
 
+.colorCanvas footer {
+  margin-top: 8px;
+}
+
+.colorCanvas footer .right {
+  float: right;
+}
+
 .colorCanvasInput {
   width: 30px;
   height: 20px;
