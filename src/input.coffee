@@ -118,6 +118,9 @@ class Input extends Spine.Controller
     @input.hide()
     @input.after(@el)
 
+    # Color inputs don't accept rgba
+    @input.get(0).type = 'text'
+
   open: ->
     if @picker and @picker.isOpen()
       @picker.close()
