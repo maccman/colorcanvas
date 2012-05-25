@@ -52,17 +52,14 @@ class ColorCanvas.Picker extends Spine.Controller
       @change()
 
     @display.bind 'change', (color) =>
-      @setColor(color)
+      @color.set(color.toRGBA())
+
+      @gradient.setColor(@color)
+      @spectrum.setColor(@color)
+      @alpha.setColor(@color)
+      @change()
 
     @append(@gradient, @spectrum, @alpha, @display)
-
-  setColor: (@color) ->
-    @display.setColor(@color)
-    @gradient.setColor(@color)
-    @spectrum.setColor(@color)
-    @alpha.setColor(@color)
-
-    @change()
 
   change: (color = @color) ->
     @trigger 'change', color

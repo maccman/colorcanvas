@@ -18,7 +18,7 @@ class ColorCanvas.Display extends Spine.Controller
 
   events:
     'change input:not([name=hex])': 'changeInput'
-    'change input[name=hex]': 'changeHex'
+    'keyup input[name=hex]': 'changeHex'
 
   constructor: ->
     super
@@ -44,17 +44,23 @@ class ColorCanvas.Display extends Spine.Controller
   changeInput: (e) ->
     e.preventDefault()
 
-    color = new Color(
+    @color = new Color(
       r: @$r.val(),
       g: @$g.val(),
       b: @$b.val(),
       a: parseFloat(@$a.val()) / 100
     )
 
-    @trigger 'change', color
+    @trigger 'change', @color
 
   changeHex: (e) ->
     e.preventDefault()
 
-    color = new Color(@$hex.val())
-    @trigger 'change', color
+    @color = new Color(@$hex.val())
+
+    @$r.val @color.r
+    @$g.val @color.g
+    @$b.val @color.b
+
+    @$preview.css(background: @color.toString())
+    @trigger('change', @color)
