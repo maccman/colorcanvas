@@ -1,10 +1,10 @@
 #= require ./views/display
 
-Color    = @ColorCanvas.Color
-Spine    = @ColorCanvas.Spine
-template = @ColorCanvas['picker/views/display']
+Color    = ColorCanvas.Color
+Spine    = ColorCanvas.Spine
+template = ColorCanvas['picker/views/display']
 
-class @ColorCanvas.Display extends Spine.Controller
+class ColorCanvas.Display extends Spine.Controller
   tag: 'article'
 
   elements:
@@ -56,5 +56,5 @@ class @ColorCanvas.Display extends Spine.Controller
   changeHex: (e) ->
     e.preventDefault()
 
-    color = Color.fromString(@$hex.val())
+    color = new Color(@$hex.val())
     @trigger 'change', color

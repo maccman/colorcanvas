@@ -1,11 +1,11 @@
-Spine    = @ColorCanvas.Spine
-Color    = @ColorCanvas.Color
-Gradient = @ColorCanvas.Gradient
-Spectrum = @ColorCanvas.Spectrum
-Alpha    = @ColorCanvas.Alpha
-Display  = @ColorCanvas.Display
+Spine    = ColorCanvas.Spine
+Color    = ColorCanvas.Color
+Gradient = ColorCanvas.Gradient
+Spectrum = ColorCanvas.Spectrum
+Alpha    = ColorCanvas.Alpha
+Display  = ColorCanvas.Display
 
-class @ColorCanvas.Picker extends Spine.Controller
+class ColorCanvas.Picker extends Spine.Controller
   className: 'colorCanvas'
   width: 425
 
@@ -13,7 +13,7 @@ class @ColorCanvas.Picker extends Spine.Controller
     super
     @color or= new Color(r: 255, g: 0, b: 0)
     unless @color instanceof Color
-      @color = Color.fromString(@color)
+      @color = new Color(@color)
     @original = @color.clone()
     @render()
 
@@ -33,7 +33,13 @@ class @ColorCanvas.Picker extends Spine.Controller
       @change()
 
     @spectrum.bind 'change', (color) =>
+      # Only change Hue
+      hsv   = @color.toHSV()
+      hsv.h = color.toHSV().h
+      color = new Color(hsv)
+
       @color.set(color.toRGB())
+
       @gradient.setColor(@color)
       @display.setColor(@color)
       @alpha.setColor(@color)

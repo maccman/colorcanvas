@@ -135,5 +135,5 @@ class Controller extends Module
     @el
 
 # Spine Shim
-Spine = @ColorCanvas.Spine = {}
+Spine = ColorCanvas.Spine = {}
 Spine.Controller = Controller

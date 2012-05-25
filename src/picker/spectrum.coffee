@@ -1,5 +1,5 @@
-Color  = @ColorCanvas.Color
-Canvas = @ColorCanvas.Canvas
+Color  = ColorCanvas.Color
+Canvas = ColorCanvas.Canvas
 
 class ColorCanvas.Spectrum extends Canvas
   className: 'spectrum'

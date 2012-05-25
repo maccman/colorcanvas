@@ -1,9 +1,6 @@
 #= require ./tinycolor
 
-class @ColorCanvas.Color
-  @fromString: (str) ->
-    new Color(tinycolor(str).toRgb())
-
+class ColorCanvas.Color
   @White: (alpha) ->
     new Color(r: 255, g: 255, b: 255, a: alpha)
 
@@ -14,15 +11,12 @@ class @ColorCanvas.Color
     new Color
 
   constructor: (rgb) ->
-    @a = 1
-    @set(rgb)
+    @set(tinycolor(rgb).toRgb())
 
   tinycolor: ->
     tinycolor(r: @r, g: @g, b: @b, a: @a)
 
   toHex: ->
-    unless @r? and @g? and @b?
-      return 'transparent'
     '#' + @tinycolor().toHex().toUpperCase()
 
   toHSV: ->
@@ -32,6 +26,12 @@ class @ColorCanvas.Color
     @tinycolor().toHsl()
 
   toRGB: ->
+    result =
+      r: @r
+      g: @g
+      b: @b
+
+  toRGBA: ->
     result =
       r: @r
       g: @g
@@ -50,18 +50,15 @@ class @ColorCanvas.Color
     @r = parseInt(rgb.r, 10) if rgb.r?
     @g = parseInt(rgb.g, 10) if rgb.g?
     @b = parseInt(rgb.b, 10) if rgb.b?
-    @a = parseFloat(rgb.a)   if rgb.a?
+    @a = parseFloat(rgb.a) if rgb.a?
+    @a = 1 if isNaN(@a)
     this
 
   clone: ->
     new Color(@toRGB())
 
   toString: ->
-    if @r? and @g? and @b?
-      if @a? and @a isnt 1
-        "rgba(#{@r}, #{@g}, #{@b}, #{@a})"
-      else
-        @toHex()
-
+    if @a? and @a isnt 1
+      "rgba(#{@r}, #{@g}, #{@b}, #{@a})"
     else
-      'transparent'
+      @toHex()

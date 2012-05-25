@@ -8,7 +8,6 @@
   -moz-box-orient: horizontal;
   -moz-box-align: stretch;
   -moz-box-pack: start;
-  width: 425px;
 }
 
 .colorCanvas canvas {
@@ -56,7 +55,7 @@
   height: 8px;
   border-radius: 50%;
   border: 2px solid #000;
-  margin: -4px 0 0 -4px;
+  margin: -5px 0 0 -6px;
 }
 
 .colorCanvas .spectrum .position,
@@ -68,11 +67,11 @@
 }
 
 .colorCanvas .preview {
-  background: url("site/grid.png") repeat;
+  background: url("grid.png") repeat;
 }
 
 .colorCanvas .alpha {
-  background: url("site/grid.png") repeat;
+  background: url("grid.png") repeat;
   margin: 0 6px 0 0;
 }
 
@@ -96,7 +95,7 @@
 .colorCanvasInput {
   width: 30px;
   height: 20px;
-  background-image: url("site/grid.png");
+  background-image: url("grid.png");
 }
 
 .popup {

@@ -9,7 +9,7 @@ class ColorCanvas.Alpha extends ColorCanvas.Canvas
     @position = new ColorCanvas.Position
     @append(@position)
 
-    @color or= new ColorCanvas.Color(0, 0, 0)
+    @color or= new ColorCanvas.Color.Black
     @setColor(@color)
 
   render: ->
@@ -29,7 +29,7 @@ class ColorCanvas.Alpha extends ColorCanvas.Canvas
 
   val: (x, y) ->
      data = @ctx.getImageData(x, y, 1, 1).data
-     @color.set(a: Math.round((data[3] / 255) * 100) / 100)
+     @color.clone().set(a: Math.round((data[3] / 255) * 100) / 100)
 
   getCoords: (color = @color) ->
     result =

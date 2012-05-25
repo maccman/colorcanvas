@@ -113,7 +113,7 @@ class Input extends Spine.Controller
 
   replace: (input) ->
     @input = $(input)
-    @color.set Color.fromString(@input.val())
+    @color.set new Color(@input.val())
 
     @input.hide()
     @input.after(@el)
@@ -136,6 +136,6 @@ class Input extends Spine.Controller
 
     @picker.open(@el.offset())
 
-@ColorCanvas.Input = Input
-@ColorCanvas.Popup = Popup
-@ColorCanvas.PickerPopup = PickerPopup
+ColorCanvas.Input = Input
+ColorCanvas.Popup = Popup
+ColorCanvas.PickerPopup = PickerPopup
