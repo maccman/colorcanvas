@@ -125,8 +125,7 @@ class Input extends Spine.Controller
 
     @picker = new PickerPopup(color: @color)
 
-    @picker.bind 'change', (color) =>
-      @color.set color
+    @picker.bind 'change', (@color) =>
       @trigger 'change', @color
 
       @input.val(@color.toString())
